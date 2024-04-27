@@ -1,0 +1,59 @@
+.container {
+  text-align: center;
+  margin: 30px auto;
+  width: 350px;
+}
+
+.expense-container {
+  background-color: #fff;
+  box-shadow: 2.5px 3px rgb(222 216 216);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.expense-container>div {
+  flex: 1;
+  text-align: center;
+}
+
+.expense-container>div:first-of-type {
+  border-right: 1px solid #dedede;
+}
+
+.income {
+  color: #2ecc71;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.expense {
+  color: #c0392b;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.transactionList {
+  padding-top: 10px;
+}
+
+.list li {
+  background-color: rgb(209 209 209 / 12%);
+  box-shadow: 0px 3px rgb(236 228 228);
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 7px;
+  margin: 10px 0;
+}
+
+.list li.income {
+  border-right: 5px solid #2ecc71;
+  background-color: #84c6845e;
+}
+
+.list li.expense {
+  border-right: 5px solid #c0392b;
+  background-color: #c481815e
+}
