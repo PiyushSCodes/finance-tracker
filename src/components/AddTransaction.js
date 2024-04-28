@@ -37,7 +37,7 @@ const AddTransactions = ({ id, addTransaction, transactions }) => {
   };
   const totalAmount = transactions.map((transaction) =>
     transaction.type === "expense"
-      ? Number(-transaction.amount)
+      ? Number(-transaction.amount) // Number is constructor function of javascript that converts the value to number type 
       : Number(transaction.amount)
   );
   const total = totalAmount.reduce((acc, item) => acc + item, 0);
@@ -68,7 +68,7 @@ const AddTransactions = ({ id, addTransaction, transactions }) => {
             </Button>
           </Grid>
         )}
-        <Categories category={category} updateCategory={handleUpdateCategory} />
+        <Categories categoryValue={category} updateCategory={handleUpdateCategory} />
         <Grid item xs={12}>
           <FormControl fullWidth>
             <TextField

@@ -13,6 +13,7 @@ const categoriesSlice = createSlice({
   name: "categories",
   initialState: initialCategoriesState,
   reducers: {
+    // To add new category 
     addCategory: (state, action) => {
       state.push(action.payload);
       localStorage.setItem("categoriesState", JSON.stringify(state));

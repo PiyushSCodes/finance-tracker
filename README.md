@@ -20,6 +20,18 @@ To get started with the Finance Tracker app, follow these steps:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+## JSON Server
+
+JSON Server is a easy-to-use Node.js tool that simulates a RESTful API using a JSON file as the data source.\
+
+To create a backend API server using JSON Server follow these steps:
+
+1. Install the  dependency:
+
+### `npm i json-server`
+
+2. Start the json server:
+
 ### `npx json-server --watch db.json --port 8000`
 
 Starts a json server at port 8000.\
@@ -45,7 +57,7 @@ To use the Reduxjs Toolkit in the Finance Tracker app, follow these steps:
 
 ### `npm install @reduxjs/toolkit`
 
-2. Create a slice for managing the state of the transactions.
+2. Create slice for managing the state of the transactions and category.
 
 3. Use the configureStore function from the Reduxjs Toolkit to create a Redux store.
 

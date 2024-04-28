@@ -7,15 +7,17 @@ const transactionsSlice = createSlice({
   name: "transactions",
   initialState: transactions,
   reducers: {
+    // To add transactions in store
     addTransaction: (state, action) => {
       state.push(action.payload);
       localStorage.setItem("transactionsState", JSON.stringify(state));
     },
+    // To delete transactions
     deleteTransaction: (state, action) => {
-      const updateState = state.filter(
+      const updatedState = state.filter(
         (transaction) => transaction.id !== action.payload
       );
-      state = updateState;
+      state = updatedState;
       localStorage.setItem("transactionsState", JSON.stringify(state));
       return state;
     },

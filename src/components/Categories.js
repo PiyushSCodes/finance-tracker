@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { InputLabel, MenuItem, FormControl, Select } from "@mui/material";
 
-const Categories = ({ updateCategory, category }) => {
+const Categories = ({ updateCategory, categoryValue }) => {
   const expenseCategories = useSelector((state) => state.categories);
   return (
     <div>
@@ -11,7 +11,7 @@ const Categories = ({ updateCategory, category }) => {
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          value={category}
+          value={categoryValue}
           label="category"
           onChange={updateCategory}
         >

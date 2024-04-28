@@ -9,7 +9,7 @@ import {
   Switch,
   FormControl,
   FormControlLabel,
-  TextField
+  TextField,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
@@ -33,12 +33,18 @@ const TransactionsList = () => {
   };
 
   const handleAddCategory = (text) => {
-    dispatch(addCategory({name: text}));
-  }
+    dispatch(addCategory({ name: text }));
+    alert(`${text} added into category successfully`);
+    navigate("/add-expense");
+  };
 
   return (
     <div className="transactionList">
-      <h2>Your Transactions</h2>
+      {transactions.length > 0 ? (
+        <h2>Your Transactions</h2>
+      ) : (
+        <h2>No Transactions found</h2>
+      )}
       <List className="list">
         {transactions.map((transaction) => {
           return (
@@ -92,7 +98,7 @@ const TransactionsList = () => {
           <Grid item xs={12}>
             <FormControl fullWidth>
               <TextField
-                label="Enter Category"
+                label="Enter new category"
                 value={text}
                 onChange={(event) => setText(event.target.value)}
               />

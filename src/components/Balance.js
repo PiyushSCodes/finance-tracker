@@ -3,7 +3,7 @@ import React from "react";
 const Balance = ({ transactions }) => {
   const amount = transactions.map((transaction) =>
     transaction.type === "expense"
-      ? Number(-transaction.amount)
+      ? Number(-transaction.amount) //Number is a constructor function in javascript that converts the value to number type
       : Number(transaction.amount)
   );
   const income = amount
