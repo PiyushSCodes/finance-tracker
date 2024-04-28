@@ -9,13 +9,6 @@ const transactionsSlice = createSlice({
     addTransaction: (state, action) => {
       state.push(action.payload);
     },
-    // updateTransaction: (state, action) => {
-    //   const { id, updatedTransaction } = action.payload;
-    //   const index = state.findIndex((transaction) => transaction.id === id);
-    //   if (index !== -1) {
-    //     state[index] = updatedTransaction;
-    //   }
-    // },
     deleteTransaction: (state, action) => {
       return state.filter((transaction) => transaction.id !== action.payload);
     },

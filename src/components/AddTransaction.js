@@ -76,6 +76,7 @@ const AddTransactions = ({ id, addTransaction, transactions }) => {
               value={amount}
               onChange={(event) => setAmount(event.target.value)}
               type="number"
+              required={true}
             />
           </FormControl>
         </Grid>
@@ -89,6 +90,7 @@ const AddTransactions = ({ id, addTransaction, transactions }) => {
               InputLabelProps={{
                 shrink: true,
               }}
+              required={true}
             />
           </FormControl>
         </Grid>

@@ -9,6 +9,7 @@ const Categories = ({ updateCategory, category }) => {
       <FormControl sx={{ m: 2, minWidth: 350 }}>
         <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
         <Select
+          require={true}
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={category}
