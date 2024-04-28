@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialCategoriesState = [
+const initialCategoriesState = JSON.parse(
+  localStorage.getItem("categoriesState")
+) || [
   { name: "Grocery" },
   { name: "Salary" },
   { name: "Rent" },
-  { name: "Miscellaneous" },
+  { name: "Other" },
 ];
 
 const categoriesSlice = createSlice({
@@ -13,6 +15,7 @@ const categoriesSlice = createSlice({
   reducers: {
     addCategory: (state, action) => {
       state.push(action.payload);
+      localStorage.setItem("categoriesState", JSON.stringify(state));
     },
   },
 });

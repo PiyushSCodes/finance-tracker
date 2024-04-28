@@ -33,7 +33,6 @@ const TransactionsList = () => {
   };
 
   const handleAddCategory = (text) => {
-    console.log("text=>", text)
     dispatch(addCategory({name: text}));
   }
 

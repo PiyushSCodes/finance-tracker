@@ -1,26 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const transactionArr = [];
+const transactions =
+  JSON.parse(localStorage.getItem("transactionsState")) || [];
 
 const transactionsSlice = createSlice({
   name: "transactions",
-  initialState: transactionArr,
+  initialState: transactions,
   reducers: {
     addTransaction: (state, action) => {
       state.push(action.payload);
+      localStorage.setItem("transactionsState", JSON.stringify(state));
     },
     deleteTransaction: (state, action) => {
-      return state.filter((transaction) => transaction.id !== action.payload);
-    },
-    getTransactions: (state, action) => {
-      return action.payload;
+      const updateState = state.filter(
+        (transaction) => transaction.id !== action.payload
+      );
+      state = updateState;
+      localStorage.setItem("transactionsState", JSON.stringify(state));
+      return state;
     },
   },
 });
 
-export const { addTransaction, deleteTransaction, getTransactions } =
-  transactionsSlice.actions;
+export const { addTransaction, deleteTransaction } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;
-
-// export const transactions = (state) => state.transactions;
