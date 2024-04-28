@@ -1,14 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddTransaction from "../components/AddTransaction";
-import TransactionsList from "../components/TransactionsList";
 import FinanceCategory from "../components/FinanceCategory";
-import {
-  addTransaction,
-  deleteTransaction,
-} from "../redux/reducers/transactionsSlice";
+import { addTransaction } from "../redux/reducers/transactionsSlice";
 
-export default function Main() {
+const Main = () => {
   const transactions = useSelector((state) => state.transactions);
   const dispatch = useDispatch();
 
@@ -16,17 +12,9 @@ export default function Main() {
     dispatch(addTransaction(transaction));
   };
 
-  const handleDeleteTransaction = (id) => {
-    dispatch(deleteTransaction(id));
-  };
-
   return (
     <div>
       <FinanceCategory transactions={transactions} />
-      <TransactionsList
-        transactions={transactions}
-        deleteTransaction={handleDeleteTransaction}
-      />
       <AddTransaction
         addTransaction={handleAddTransaction}
         transactions={transactions}
@@ -34,4 +22,6 @@ export default function Main() {
       />
     </div>
   );
-}
+};
+
+export default Main;

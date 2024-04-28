@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function IncomeCategory({ transactions }) {
+const IncomeCategory = ({ transactions }) => {
   const amount = transactions.map((transaction) =>
     transaction.type === "expense"
       ? Number(-transaction.amount)
@@ -24,4 +24,6 @@ export default function IncomeCategory({ transactions }) {
       </div>
     </div>
   );
-}
+};
+
+export default IncomeCategory;

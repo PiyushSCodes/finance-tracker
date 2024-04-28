@@ -9,24 +9,28 @@ import {
   Radio,
   Grid,
 } from "@mui/material";
+import Categories from "./Categories";
+import { useNavigate } from "react-router-dom";
 
-export default function AddTransactions({ id, addTransaction, transactions }) {
-  const [text, setText] = useState("");
+const AddTransactions = ({ id, addTransaction, transactions }) => {
+  const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [type, setType] = useState("");
+
+  const navigate = useNavigate();
 
   const onSubmit = (event) => {
     event.preventDefault();
     const newTransaction = {
       id: id,
-      text: text,
+      category: category,
       amount: amount,
       date: date,
       type: type,
     };
     addTransaction(newTransaction);
-    setText("");
+    setCategory("");
     setAmount("");
     setDate("");
     setType("");
@@ -38,6 +42,10 @@ export default function AddTransactions({ id, addTransaction, transactions }) {
   );
   const total = totalAmount.reduce((acc, item) => acc + item, 0);
 
+  const handleUpdateCategory = (event) => {
+    setCategory(event.target.value);
+  };
+
   return (
     <form onSubmit={onSubmit}>
       <Grid container spacing={2}>
@@ -45,15 +53,22 @@ export default function AddTransactions({ id, addTransaction, transactions }) {
           <h3>Total Balance</h3>
           <h1>₹{total}</h1>
         </Grid>
-        <Grid item xs={12}>
-          <FormControl fullWidth>
-            <TextField
-              label="Text"
-              value={text}
-              onChange={(event) => setText(event.target.value)}
-            />
-          </FormControl>
-        </Grid>
+        {transactions.length > 0 && (
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={() => {
+                navigate("/show-transactions");
+              }}
+            >
+              View all transactions
+            </Button>
+          </Grid>
+        )}
+        <Categories category={category} updateCategory={handleUpdateCategory} />
         <Grid item xs={12}>
           <FormControl fullWidth>
             <TextField
@@ -89,12 +104,12 @@ export default function AddTransactions({ id, addTransaction, transactions }) {
             >
               <FormControlLabel
                 value="income"
-                control={<Radio required="true"/>}
+                control={<Radio required={true} />}
                 label="Income"
               />
               <FormControlLabel
                 value="expense"
-                control={<Radio required="true"/>}
+                control={<Radio required={true} />}
                 label="Expense"
               />
             </RadioGroup>
@@ -108,4 +123,6 @@ export default function AddTransactions({ id, addTransaction, transactions }) {
       </Grid>
     </form>
   );
-}
+};
+
+export default AddTransactions;

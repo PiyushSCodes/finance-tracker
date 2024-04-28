@@ -17,7 +17,7 @@ const Login = () => {
         (user) => user.username === username && user.password === password
       );
       if (user) {
-        navigate("/tracker");
+        navigate("/add-expense");
         alert(`Welcome, ${username}!`);
       } else {
         alert("Invalid username or password");

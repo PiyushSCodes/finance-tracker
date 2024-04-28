@@ -1,37 +1,124 @@
-import React from "react";
-import { List, ListItem, ListItemText, IconButton } from "@mui/material";
+import React, { useState } from "react";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+  Grid,
+  Button,
+  Switch,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  TextField
+} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTransaction } from "../redux/reducers/transactionsSlice";
+import { addCategory } from "../redux/reducers/categoriesSlice";
 
-export default function TransactionsList({
-  transactions,
-  deleteTransaction,
-}) {
+const TransactionsList = () => {
+  const [text, setText] = useState("");
+  const [checked, setChecked] = useState(false);
+  const transactions = useSelector((state) => state.transactions);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleDeleteTransaction = (id) => {
+    dispatch(deleteTransaction(id));
+  };
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
+  const handleAddCategory = (text) => {
+    console.log("text=>", text)
+    dispatch(addCategory({name: text}));
+  }
+
   return (
-    transactions.length > 0 && (
-      <div className="transactionList">
-        <h2>Your Transactions</h2>
-        <List className="list">
-          {transactions.map((transaction) => {
-            return (
-              <ListItem
-                key={transaction.id}
-                className={transaction.type === "income" ? "income" : "expense"}
+    <div className="transactionList">
+      <h2>Your Transactions</h2>
+      <List className="list">
+        {transactions.map((transaction) => {
+          return (
+            <ListItem
+              key={transaction.id}
+              className={transaction.type === "income" ? "income" : "expense"}
+            >
+              <ListItemText
+                primary={transaction.text}
+                secondary={`${transaction.category} | ${transaction.amount} | ${transaction.date}`}
+              />
+              <IconButton
+                aria-label="delete"
+                onClick={() => handleDeleteTransaction(transaction.id)}
               >
-                <ListItemText
-                  primary={transaction.text}
-                  secondary={`${transaction.amount} | ${transaction.date}`}
+                <DeleteIcon />
+              </IconButton>
+            </ListItem>
+          );
+        })}
+      </List>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={() => {
+              navigate("/add-expense");
+            }}
+          >
+            Go back
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={checked}
+                  onChange={handleChange}
+                  inputProps={{ "aria-label": "controlled" }}
                 />
-                <IconButton
-                  aria-label="delete"
-                  onClick={() => deleteTransaction(transaction.id)}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </ListItem>
-            );
-          })}
-        </List>
-      </div>
-    )
+              }
+              label="Add new transaction category"
+            ></FormControlLabel>
+          </FormControl>
+        </Grid>
+        {checked && (
+          <Grid item xs={12}>
+            <FormControl fullWidth>
+              <TextField
+                label="Enter Category"
+                value={text}
+                onChange={(event) => setText(event.target.value)}
+              />
+            </FormControl>
+          </Grid>
+        )}
+        {checked && (
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={() => handleAddCategory(text)}
+            >
+              Add Category
+            </Button>
+          </Grid>
+        )}
+      </Grid>
+    </div>
   );
-}
+};
+
+export default TransactionsList;

@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const transactionArr = [];
+
 const transactionsSlice = createSlice({
   name: "transactions",
-  initialState: [],
+  initialState: transactionArr,
   reducers: {
     addTransaction: (state, action) => {
       state.push(action.payload);
