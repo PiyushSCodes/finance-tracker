@@ -63,6 +63,23 @@ To use Material UI in the Finance Tracker app, follow these steps:
 
 2. Import the Material UI components and styles in the components of the application as required.
 
+## Use of localStorage
+
+localStorage is being used to store application data locally.\
+
+To use localStorage in application, follow these steps:
+
+1. Store the values using proper key, value pairs as per your requirement:
+
+### `localStorage.setItem(key, JSON.stringify(value));`
+
+2. To retrieve the data from localStorage, use:
+
+### `localStorage.getItem(key);`
+
+To read more about localStorage property\
+Open [https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to view it in your browser.
+
 ## Build app for production
 
 ### `npm run build`
